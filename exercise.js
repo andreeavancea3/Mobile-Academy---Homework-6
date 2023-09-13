@@ -77,10 +77,8 @@ class Truck extends Vehicle {
 const motorcycle = new Motorcycle(100);
 const motorcycleInfoElement = document.getElementById("motorcycle-info");
 
-// Variabilă pentru a urmări dacă călătoria este în curs sau nu
 let isJourneyInProgress = false;
 
-// Funcție pentru a actualiza informațiile despre motocicletă
 function updateMotorcycleInfo() {
     motorcycleInfoElement.innerHTML = `
         <p>Current Speed: ${motorcycle.currentSpeed}</p>
@@ -95,29 +93,25 @@ function updateMotorcycleInfo() {
     `;
 }
 
-// Eveniment pentru butonul "Start Journey"
 document.getElementById("startJourneyButton").addEventListener("click", () => {
     if (!isJourneyInProgress) {
         isJourneyInProgress = true;
         
-        // Funcție pentru a simula călătoria vehiculului
         function startJourney() {
             motorcycle.drive();
             motorcycle.pay();
             updateMotorcycleInfo();
             
-            // Verificare dacă călătoria trebuie să continue
             if (motorcycle.currentSpeed > 0 && motorcycle.tank > 0) {
-                requestAnimationFrame(startJourney); // Continuă călătoria
+                requestAnimationFrame(startJourney); 
             } else {
-                isJourneyInProgress = false; // Opriți călătoria
+                isJourneyInProgress = false; 
             }
         }
         
-        // Porniți călătoria simulată
         startJourney();
     }
 });
 
-// Inițializare afișare informații
+
 updateMotorcycleInfo();
